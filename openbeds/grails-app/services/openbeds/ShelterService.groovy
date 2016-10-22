@@ -33,7 +33,6 @@ class ShelterService {
                 s.bedCount = s.maxBeds
             }
             log.debug("Increment to ${s.bedCount}")
-            s.save()
             return s
         }
         return null
@@ -47,7 +46,6 @@ class ShelterService {
                 s.bedCount = 0
             }
             log.debug("Decremented to ${s.bedCount}")
-            s.save()
             return s
         }
         return null
