@@ -5,6 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class SeedDataService {
 
+    def predictionService
     def seed() {
 
         /*
@@ -31,7 +32,7 @@ class SeedDataService {
                 phone: "123-232-2132",
                 zip: "63017",
                 streetAddress: "123 Main",
-                demoReqs: "Men"
+                demoReqs: "Men",
         ).save()
 
         new Shelter(

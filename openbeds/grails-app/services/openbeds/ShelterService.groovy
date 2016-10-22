@@ -1,6 +1,7 @@
 package openbeds
 
 import grails.transaction.Transactional
+import groovy.time.TimeCategory
 
 @Transactional
 class ShelterService {
@@ -28,6 +29,9 @@ class ShelterService {
         def s = Shelter.get(id)
         if(s){
             s.bedCount++
+            if(s.bedCount > s.maxBeds){
+                s.bedCount = s.maxBeds
+            }
             log.debug("Increment to ${s.bedCount}")
             s.save()
             return s

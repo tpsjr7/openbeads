@@ -6,21 +6,25 @@ class ShelterController {
 
     static allowedMethods = [resetCount:'POST', increment: 'POST', reset: 'POST' ]
     def shelterService
+    def predictionService
 
     private asJSON(Closure c){
         int i
         if(params.id){
             i = params.id as Integer
         }  else {
-            response.sendError(404)
+            response.setStatus(404)
+            render ([error: "invalid id"] as JSON)
             return
         }
 
         def s = c(i)
         if(s){
+            predictionService.predictFillTime(s)
             render (s as JSON)
         } else {
-            response.sendError(404)
+            response.setStatus(404)
+            render ([error: "invalid id"] as JSON)
         }
     }
 
