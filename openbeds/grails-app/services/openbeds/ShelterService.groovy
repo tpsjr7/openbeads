@@ -18,6 +18,7 @@ class ShelterService {
         if(s){
             s.bedCount = 0
             log.debug("Reset id ${id}")
+            s.save()
             return s
         }
         return null
@@ -28,6 +29,21 @@ class ShelterService {
         if(s){
             s.bedCount++
             log.debug("Increment to ${s.bedCount}")
+            s.save()
+            return s
+        }
+        return null
+    }
+
+    Shelter decrementBeds(int id){
+        def s = Shelter.get(id)
+        if(s){
+            s.bedCount--
+            if(s.bedCount < 0){
+                s.bedCount = 0
+            }
+            log.debug("Decremented to ${s.bedCount}")
+            s.save()
             return s
         }
         return null

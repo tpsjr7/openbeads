@@ -40,6 +40,12 @@ class ShelterController {
         }
     }
 
+    def decrement(){
+        asJSON {
+            shelterService.decrementBeds(it)
+        }
+    }
+
     def reset(){
         asJSON {
             shelterService.reset(it)
