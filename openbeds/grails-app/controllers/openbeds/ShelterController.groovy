@@ -4,28 +4,10 @@ import grails.converters.JSON
 
 class ShelterController {
 
-    static allowedMethods = [resetCount:'POST', press: 'POST' ]
+    static allowedMethods = [resetCount:'POST', increment: 'POST', reset: 'POST' ]
     def shelterService
 
-    def index() { }
-
-    def all(){
-
-       render (shelterService.all() as JSON)
-    }
-
-    def suggest(){
-        render (shelterService.suggest() as JSON)
-    }
-
-    def press(){
-        int buttonId = params.id as Integer
-        log.info params.id
-
-        render buttonId
-    }
-
-    def resetCount(){
+    private asJSON(Closure c){
         int i
         if(params.id){
             i = params.id as Integer
@@ -34,10 +16,33 @@ class ShelterController {
             return
         }
 
-        if(shelterService.reset(i)){
-            render "OK"
+        def s = c(i)
+        if(s){
+            render (s as JSON)
         } else {
             response.sendError(404)
+        }
+    }
+
+    def index() { }
+
+    def all(){
+       render shelterService.all() as JSON
+    }
+
+    def suggest(){
+        render shelterService.suggest() as JSON
+    }
+
+    def increment(){
+        asJSON {
+            shelterService.incrementBeds(it)
+        }
+    }
+
+    def reset(){
+        asJSON {
+            shelterService.reset(it)
         }
     }
     // all shelters

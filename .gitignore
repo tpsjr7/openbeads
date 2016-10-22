@@ -1,3 +1,5 @@
 .idea/
 openbeds/openbeds.iml
 openbeds/target/
+openbeds/.slcache/
+*.iml

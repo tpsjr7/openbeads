@@ -13,14 +13,24 @@ class ShelterService {
         return Shelter.first()
     }
 
-    Boolean reset(int id){
+    Shelter reset(int id){
         def s = Shelter.get(id)
         if(s){
             s.bedCount = 0
             log.debug("Reset id ${id}")
-            return true
-        } else {
-            return false
+            return s
         }
+        return null
     }
+
+    Shelter incrementBeds(int id){
+        def s = Shelter.get(id)
+        if(s){
+            s.bedCount++
+            log.debug("Increment to ${s.bedCount}")
+            return s
+        }
+        return null
+    }
+
 }
