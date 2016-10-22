@@ -4,6 +4,7 @@ import grails.converters.JSON
 
 class ShelterController {
 
+    static allowedMethods = [resetCount:'POST', press: 'POST' ]
     def shelterService
 
     def index() { }
@@ -15,6 +16,29 @@ class ShelterController {
 
     def suggest(){
         render (shelterService.suggest() as JSON)
+    }
+
+    def press(){
+        int buttonId = params.id as Integer
+        log.info params.id
+
+        render buttonId
+    }
+
+    def resetCount(){
+        int i
+        if(params.id){
+            i = params.id as Integer
+        }  else {
+            response.sendError(404)
+            return
+        }
+
+        if(shelterService.reset(i)){
+            render "OK"
+        } else {
+            response.sendError(404)
+        }
     }
     // all shelters
     // suggsted shelter
