@@ -50,6 +50,20 @@ class ShelterController {
         }
     }
 
+    def pressButton(){
+        asJSON {
+            if(params.type == "CHECK_IN"){
+                log.info "Check in id ${it}"
+                return shelterService.incrementBeds(it)
+            } else if(params.type == "CHECK_OUT"){
+                log.info "Check out id${it}"
+                return shelterService.decrementBeds(it)
+            } else {
+                log.info "Unknown button press"
+            }
+        }
+    }
+
     def reset(){
         asJSON {
             shelterService.reset(it)
