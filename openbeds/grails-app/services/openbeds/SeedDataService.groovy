@@ -57,5 +57,9 @@ class SeedDataService {
                 demoReqs: "Families"
         ).save()
 
+        Shelter.findAll().each {
+            predictionService.predictFillTime(it)
+        }
+
     }
 }
