@@ -7,4 +7,5 @@ class Event {
     Date dateCreated
     EventType eventType
     Shelter shelter
+    int bedCount
 }

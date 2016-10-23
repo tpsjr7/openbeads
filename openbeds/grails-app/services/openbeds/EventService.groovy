@@ -8,7 +8,8 @@ class EventService {
     def record(EventType eventType, Shelter shelter) {
         new Event(
                 eventType: eventType,
-                shelter: shelter
+                shelter: shelter,
+                bedCount: shelter.bedCount
         ).save()
     }
 }
