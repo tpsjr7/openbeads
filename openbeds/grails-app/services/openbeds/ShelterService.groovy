@@ -12,7 +12,10 @@ class ShelterService {
     }
 
     def suggest(){
-        return Shelter.first()
+        def s = Shelter.findWhere{
+            bedCount < maxBeds
+        }
+        return s
     }
 
     Shelter reset(int id){
