@@ -5,6 +5,7 @@ class Shelter {
     static constraints = {
         predictedFillTime nullable: true
         predictedFillTimeFormated nullable: true
+        demographicRequirements nullable: true
     }
 //    static transients = ['predictedFillTime', 'predictedFillTimeFormated']
 
@@ -22,6 +23,6 @@ class Shelter {
 
     String streetAddress
 
-    String demoReqs // mens, womens, age, veterans- ask what kind of contraints
+    String demographicRequirements // mens, womens, age, veterans- ask what kind of contraints
 
 }
