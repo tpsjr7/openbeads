@@ -1,10 +1,11 @@
 package openbeds
 
 import grails.transaction.Transactional
-import groovy.time.TimeCategory
 
 @Transactional
 class ShelterService {
+
+    def eventService
 
     def all() {
         return Shelter.findAll()
@@ -31,6 +32,9 @@ class ShelterService {
             s.bedCount++
             if(s.bedCount > s.maxBeds){
                 s.bedCount = s.maxBeds
+                eventService.record(EventType.TURNED_AWAY, s)
+            } else {
+                eventService.record(EventType.CHECK_IN, s)
             }
             log.debug("Increment to ${s.bedCount}")
             return s
@@ -44,6 +48,8 @@ class ShelterService {
             s.bedCount--
             if(s.bedCount < 0){
                 s.bedCount = 0
+            } else {
+                eventService.record(EventType.CHECK_OUT, s)
             }
             log.debug("Decremented to ${s.bedCount}")
             return s
