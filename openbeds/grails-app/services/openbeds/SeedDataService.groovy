@@ -29,9 +29,9 @@ class SeedDataService {
                 maxBeds: 50,
                 bedCount: 40,
                 predictedBedCount: 30,
-                phone: "123-232-2132",
-                zip: "63017",
-                streetAddress: "123 Main",
+                phone: "(314) 231-1515",
+                zip: "63106",
+                streetAddress: "1000 19th St, St. Louis, MO",
                 demoReqs: "Men",
         ).save()
 
@@ -39,18 +39,23 @@ class SeedDataService {
                 name: "Covenant House",
                 maxBeds: 25,
                 bedCount: 20,
-                phone: "123-232-2132",
+                phone: "(314) 533-2241",
                 predictedBedCount: 30,
-                zip: "63017",
-                streetAddress: "123 Main",
+                zip: "63113",
+                streetAddress: "2727 N Kingshighway Blvd, St. Louis, MO",
                 demoReqs: "Women"
         ).save()
 
-//        new Shelter(
-//                name: "Stepping Into The Light Ministry",
-//                maxBeds: 34,
-//                bedCount: 33
-//        ).save()
+        new Shelter(
+                name: "Stepping Into The Light Ministry",
+                maxBeds: 34,
+                bedCount: 33,
+                phone: "(314) 231-5175",
+                predictedBedCount: 30,
+                streetAddress: "1402 Hebert St, St. Louis, MO",
+                zip: "63107",
+                demoReqs: "Families"
+        ).save()
 
     }
 }
